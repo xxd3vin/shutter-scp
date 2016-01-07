@@ -83,7 +83,8 @@ sub upload {
         $upload_filename =~ m/\/([^\/]*$)/;
         my $file = $1;
 
-        my $target_filename = $username . "/" . $file;
+        #my $target_filename = $username . "/" . $file;
+        my $target_filename = $username . '@192.168.2.21:/mnt/share/art2/personal/' . $username . '/Pictures/' . $file;
         $target_filename =~ s/ /\\ /g;
 
         my @args = ("scp", $upload_filename, $target_filename);
@@ -91,7 +92,8 @@ sub upload {
         if ($? == 0) {
             #status: success
             $self->{_links}{'status'} = 200;
-            $self->{_links}{'url'} = $password . uri_escape($file);
+            #$self->{_links}{'url'} = $password . uri_escape($file);
+            $self->{_links}{'url'} = 'http://192.168.2.21/art2/personal/' . $username . '/Pictures/' . uri_escape($file);
         } else {
             #status: error
             $self->{_links}{'status'} = "exec failed: @args / $?";
