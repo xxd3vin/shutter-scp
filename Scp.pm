@@ -93,7 +93,7 @@ sub upload {
             #status: success
             $self->{_links}{'status'} = 200;
             #$self->{_links}{'url'} = $password . uri_escape($file);
-            $self->{_links}{'url'} = 'http://192.168.2.21/art2/personal/' . $username . '/Pictures/' . uri_escape($file);
+            $self->{_links}{'url'} = '[[Image(http://192.168.2.21/art2/personal/' . $username . '/Pictures/' . uri_escape($file) . ', 600px)]]';
         } else {
             #status: error
             $self->{_links}{'status'} = "exec failed: @args / $?";
